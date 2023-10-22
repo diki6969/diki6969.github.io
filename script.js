@@ -7,7 +7,9 @@ const ctx = canvas.getContext('2d');
 navigator.mediaDevices
     .getUserMedia({ video: { facingMode: 'user' } })
     .then((stream) => {
-        video.srcObject = stream;
+        canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     })
     .catch((error) => {
         console.error('Error accessing the camera: ', error);
